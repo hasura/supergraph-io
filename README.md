@@ -1,4 +1,4 @@
-# Supergraph
+# The Supergraph Manifesto
 
 A supergraph is an architecture pattern and a federated operating model to help teams create a self-serve platform for data access, API integration/composition or GraphQL APIs.
 
