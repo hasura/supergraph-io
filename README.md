@@ -9,6 +9,8 @@ A supergraph is an architecture pattern and a federated operating model to help 
 - This increases the burden on the producer since it takes time to build and is fragile
 - The problem is combinatorially complex when there are multiple producers and multiple consumers
 
+![Screen Shot 2024-04-03 at 6 31 04 PM](https://github.com/hasura/supergraph-io/assets/131160/1297def0-7320-4862-bdce-4b74d152af3c)
+
 #### Here are some common scenarios which point to the need of a supergraph:
 1. You're starting to evaluate the need of a federated data access layer
 2. API consumers wish they had a monolithic API view of their microservice APIs
@@ -46,7 +48,15 @@ Most importantly, it creates compounding positive impact as the adoption of the 
 
 ### Basic architecture
 
+- Supergraph engine: The service that receives a query from an API consumer. (Also called gateway, 
+- Connector: The service that encapsuates a particular domain, and receives queries from the engine.
+
+![Screen Shot 2024-04-03 at 6 31 33 PM](https://github.com/hasura/supergraph-io/assets/131160/b113b5be-b48b-4e72-9fcc-ffa03d7a8643)
+
+
 ### Control plane
+
+
 
 ### Distributed data plane
 
