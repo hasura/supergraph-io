@@ -1,5 +1,12 @@
 # Use Cases
 
+#### The underlying problem that requires a supergraph:
+- Consuming data from multiple places requires integration or aggregation work
+- This increases the burden on the producer since it takes time to build and is fragile
+- The problem is combinatorially complex when there are multiple producers and multiple consumers
+
+![Supergraph need](https://github.com/hasura/supergraph-io/assets/131160/2debe261-813a-4100-83dd-ef3efb8dc8d0)
+
 #### Here are some common scenarios which point to the need of a supergraph:
 1. You're starting to evaluate the need of a federated data access layer
 2. API consumers wish they had a monolithic API view of their microservice APIs
