@@ -11,7 +11,7 @@ A supergraph approach aims to build a flywheel of growth to keep improving self-
 
 <img width="660" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
 
-### CONNECT domains
+### I. CONNECT domains
 Domain owners (aka data owners or API producers) should be able to seamlessly connect their domains to the platform. One of the major challenges to watch out for while building supergraphs is that domain owners are highly resistant to change (and rightly so) and do not want to maintain another API layer (eg: a GraphQL server that creates another wrapper on their domain) since it dramatically increases their build & operate burden. 
 
 This has 2 main implications:
@@ -22,7 +22,7 @@ Guaranteeing a smooth CI/CD process and high-performance connectivity gives doma
 
 **This unlocks self-serve connectivity for domain owners.**
 
-### CONSUME APIs
+### II. CONSUME APIs
 
 API consumers should be able to discover and consume APIs in a way that doesn't require manual API integration, aggregation or composition effort as far as possible. 
 API consumers need different projections of data (over-fetching), or need to join data from multiple places (under-fetching), or filter, paginate, sort and aggregate data served by discrete endpoints or data access queries.
@@ -33,7 +33,7 @@ To provide an API experience that makes the consumption experience truly self-se
 
 **This unlocks self-serve consumption for API consumers**
 
-### DISCOVER demand
+### III. DISCOVER demand
 
 Helping producers understand how consumers are using their domain and what they need but aren't able to get is critical to help producers improve their domain and to help the organization understand which producers need to connect their domains to the supergraph. 
 
@@ -46,7 +46,9 @@ This requires 2 key capabilities to create a consumer-first, agile culture:
 ## Supergraph reference architecure
 
 ### Control plane
-The control plane for the supergraph helps 
+The control plane of the supergraph is critical to help domain owners [connect their domains](#i.-connect-domains) to the supergraph.
+
+
 
 ### Distributed data plane
 
