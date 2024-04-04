@@ -45,10 +45,19 @@ This requires 2 key capabilities to create a consumer-first, agile culture:
 
 ## Supergraph reference architecure
 
-### Control plane
+### CI/CD and build system (control plane)
 The control plane of the supergraph is critical to help domain owners [connect their domains](#i.-connect-domains) to the supergraph.
 
+There are 3 components in the control plane of the supergraph
+1. The domain itself
+2. The subgraph
+3. The supergraph
 
+![Supergraph control plane components](https://github.com/hasura/supergraph-io/assets/131160/e661efd8-9d0f-4340-a5a1-a119e9fc87ee)
+
+The control plane should define the following SDLC to help keep the supergraph in sync with the domain as the underlying domain changes.
+
+![Supergraph CI/CD](https://github.com/hasura/supergraph-io/assets/131160/e6fec5a3-e3da-447e-9ac3-5dc0ceef66d9)
 
 ### Distributed data plane
 
