@@ -66,7 +66,7 @@ The supergraph data plane is critical to enable high performance access to upstr
 
 ### Supergraph API schema
 
-#### Standardization
+**Standardization**
 
 A supergraph API schema should create standardized conventions on the following:
 - Queryable models vs Commands
@@ -79,7 +79,7 @@ A supergraph API schema should create standardized conventions on the following:
   - Sorting
   - Aggregations
 
-#### Composability
+**Composability**
 
 The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
 
