@@ -66,6 +66,21 @@ The supergraph data plane is critical to enable high performance access to upstr
 
 ### Supergraph API schema
 
+#### Standardization
+
+A supergraph API schema should create standardized conventions on the following:
+- Queryable models vs Commands
+  - Models are collections of data that can be queried in standardized ways
+  - Commands are methods that map to particular pieces of business logic that might return references to other commands or models
+- Standardized conventions on queryable model: While each model might only expose some ways of querying it, the syntax and conventions for standard query operations should be standardized
+  - Joins
+  - Filtering
+  - Pagination
+  - Sorting
+  - Aggregations
+
+#### Composability
+
 The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
 
 | Composability Attribute | Capability | Description |
