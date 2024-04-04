@@ -2,63 +2,45 @@
 
 A supergraph is an architecture pattern and a federated operating model to help teams create a self-serve platform for data access, API integration/composition or GraphQL.
 
+![Before / After Supergraph](https://github.com/hasura/supergraph-io/assets/131160/2421b94e-724f-4e94-afee-61b2c81f38b7)
 
+When a supergraph is built with a GraphQL federation stack, the engine is ofted called a gateway or a router and the subgraph connectors are often GraphQL services.
 
-## A supergraph platform strategy
+## Supergraph platform strategy
+A supergraph approach aims to build a flywheel of growth to keep improving self-service access to data and APIs.
 
-A supergraph approach aims to build a flywheel in the organization.
+<img width="660" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
 
-1. Connect domains: Producers can seamlessly connect their domains to the platform
-2. Consume APIs: Consumers need to be able to consume easily over 
-3. Discover demand: Producers need to understand & analyze consumer demands to connect more domains or improve connected domains
+### Connect domains
+Domain owners (aka data owners or API producers) should be able to seamlessly connect their domains to the platform. One of the major challenges to watch out for while building supergraphs is that domain owners are highly resistant to change (and rightly so) and do not want to maintain another API layer (eg: a GraphQL server that creates another wrapper on their domain) since it dramatically increases their build & operate burden. 
 
-<img width="820" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
+This has 2 main implications:
+1. **Subgraph connector CI/CD**: As domain owners change their domains, the API contract published via the supergraph engine, must stay in sync with the least amount of overhead for the domain owner. The SDLC, change-management or CI/CD process of the domain owners must involve updating their API contract (versioning), prevent breaking changes and keeping documentation up to date.
+2. **Subgraph connector performance**: The subgraph connector must not _reduce_ performance as compared to what is provided by accessing the underlying domain directly. API performance characteristics as measured by latency, payload size & concurrency.
 
-This enables multiple stakeholders to work together, particularly in a federated model.
-It creates compounding positive impact as the adoption of the platform increases.
+Guaranteeing a smooth CI/CD process and high-performance connectivity gives domain owners confidence that they can connect their domains to the supergraph platform and iterate on changes to their domains fearlessly.
 
-## When do you need a supergraph
+**This unlocks self-serve connectivity for domain owners.**
 
-#### The underlying problem that requires a supergraph:
-- Consuming data from multiple places requires integration or aggregation work
-- This increases the burden on the producer since it takes time to build and is fragile
-- The problem is combinatorially complex when there are multiple producers and multiple consumers
+### Consume APIs
 
-![Supergraph need](https://github.com/hasura/supergraph-io/assets/131160/2debe261-813a-4100-83dd-ef3efb8dc8d0)
+API consumers should be able to discover and consume APIs in a way that doesn't require manual API integration, aggregation or composition effort as far as possible. 
+API consumers need different projections of data (over-fetching), or need to join data from multiple places (under-fetching), or filter, paginate, sort and aggregate data served by discrete endpoints or data access queries.
 
+To provide an API experience that makes the consumption experience truly self-serve, there are a 2 key requirements:
+1. **Composable API design**: The API presented by the supergraph engine must allow for on-demand composability. GraphQL is a great API to express composability semantics, but regardless of the API format used, a standardized, composable API design is a critical requirement.
+2. **API portal**: High-quality search, discovery and documentation of both the API and the underlying API models is critical to enable self-serve consumption. The more information that can be made available to API consumers the better. Eg: Data lineage, Authorization policies etc as appropriate.
 
-#### Here are some common scenarios which point to the need of a supergraph:
-1. You're starting to evaluate the need of a federated data access layer
-2. API consumers wish they had a monolithic API view of their microservice APIs
-3. API consumers want GraphQL, but API producers don't want to maintain GraphQL services
-5. You're trying to make your API gateway work as an API integration or orchestration layer
-6. You're thinking about API standardization for creating flexible data APIs
-7. You want to replace direct database access with APIs
-8. You want to deliver data products or a data mesh over an API
-9. You want to deliver knowledge graph for enabling data retrieval for AI applications
+**This unlocks self-serve consumption for API consumers**
 
-#### In all of the situations above, the key problem is the lack of a strategy and an architecture to operationalize the strategy:
-1. API consumers are frustrated by the lack of APIs that are optimized for their specific data retrieval use cases
-2. API producers are not willing to take on the burden of maintaining and operationalizing API aggregation and composition problems
-3. There is no operating model or ownership model for who should solve the integration problem
+### Discover demand
 
-
-## Supergraph vs alternative approaches
-
-<img width="1151" alt="Screen Shot 2024-04-03 at 4 15 45 PM" src="https://github.com/hasura/supergraph-io/assets/131160/c45c7b4b-b83e-4f2e-9465-71f820f470a4">
+xxxx
 
 ## Supergraph reference architecure
 
-### Conceptual architecture
-
-- Supergraph engine: The service that receives a query from an API consumer. (Eg: gateway, router)
-- Subgraph connector: The service that encapsuates a particular domain, and receives queries from the engine. (Eg: GraphQL server)
-
-![Screen Shot 2024-04-03 at 10 35 02 PM](https://github.com/hasura/supergraph-io/assets/131160/4dbd79e9-8779-4dbe-bed7-5926b1682eb6)
-
 ### Control plane
-
-
+The control plane for the supergraph helps 
 
 ### Distributed data plane
 
