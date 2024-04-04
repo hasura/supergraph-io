@@ -53,22 +53,23 @@ There are 3 components in the control plane of the supergraph
 2. The subgraph
 3. The supergraph
 
-<img width="660" alt="Supergraph control plane components" src="https://github.com/hasura/supergraph-io/assets/131160/e661efd8-9d0f-4340-a5a1-a119e9fc87ee">
+<img width="800" alt="Supergraph control plane components" src="https://github.com/hasura/supergraph-io/assets/131160/e661efd8-9d0f-4340-a5a1-a119e9fc87ee">
 
 The control plane should define the following SDLC to help keep the supergraph in sync with the domain as the underlying domain changes.
 
-<img width="660" alt="Supergraph CI/CD" src="(https://github.com/hasura/supergraph-io/assets/131160/e6fec5a3-e3da-447e-9ac3-5dc0ceef66d9">
+<img width="800" alt="Supergraph CI/CD" src="https://github.com/hasura/supergraph-io/assets/131160/e6fec5a3-e3da-447e-9ac3-5dc0ceef66d9">
 
 ### Distributed data plane
 The supergraph data plane is critical to enable high performance access to upstream domains so that API producers can maintain their domain without hidden future maintenance costs:
 
-<img  width="660" alt="Supergraph data plane" src="https://github.com/hasura/supergraph-io/assets/131160/c6e1de9b-fe8f-4f9e-8503-7f655b02d9a9">
+<img  width="800" alt="Supergraph data plane" src="https://github.com/hasura/supergraph-io/assets/131160/c6e1de9b-fe8f-4f9e-8503-7f655b02d9a9">
 
 ### Supergraph API schema
 
 The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
 
 | Composability Attribute | Capability | Description |
+| :-- | :-- | :-- | 
 | C1 | Joining data | Join related data together in a "foreign key" like join |
 | C2 | Nested filtering | Filter a parent by a property of its child (aka a property of a related entity) |
 | C3 | Nested sorting | Sort a parent by a property of its child (aka a property of a related entity) |
