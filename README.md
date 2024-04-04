@@ -1,6 +1,21 @@
 # Supergraph
 
-A supergraph is an architecture pattern and a federated operating model to help teams create a self-serve platform for data & API integration.
+A supergraph is an architecture pattern and a federated operating model to help teams create a self-serve platform for data access, API integration/composition or GraphQL.
+
+
+
+## A supergraph platform strategy
+
+A supergraph approach aims to build a flywheel in the organization.
+
+1. Connect domains: Producers can seamlessly connect their domains to the platform
+2. Consume APIs: Consumers need to be able to consume easily over 
+3. Discover demand: Producers need to understand & analyze consumer demands to connect more domains or improve connected domains
+
+<img width="820" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
+
+This enables multiple stakeholders to work together, particularly in a federated model.
+It creates compounding positive impact as the adoption of the platform increases.
 
 ## When do you need a supergraph
 
@@ -9,7 +24,8 @@ A supergraph is an architecture pattern and a federated operating model to help 
 - This increases the burden on the producer since it takes time to build and is fragile
 - The problem is combinatorially complex when there are multiple producers and multiple consumers
 
-![Screen Shot 2024-04-03 at 6 31 04 PM](https://github.com/hasura/supergraph-io/assets/131160/1297def0-7320-4862-bdce-4b74d152af3c)
+![Supergraph need](https://github.com/hasura/supergraph-io/assets/131160/2debe261-813a-4100-83dd-ef3efb8dc8d0)
+
 
 #### Here are some common scenarios which point to the need of a supergraph:
 1. You're starting to evaluate the need of a federated data access layer
@@ -27,32 +43,18 @@ A supergraph is an architecture pattern and a federated operating model to help 
 3. There is no operating model or ownership model for who should solve the integration problem
 
 
-## A supergraph platform strategy
-
-A supergraph approach aims to build this flywheel in the organization.
-
-- Connect domains: Producers need to connect to the platform
-- Consume APIs: Consumers need to be able to consume easily over 
-- Discover demand: Producers need to understand & analyze consumer demands to connect more domains or improve connected domains
-
-<img width="820" alt="Screen Shot 2024-04-03 at 4 09 51 PM" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
-
-This enables multiple stakeholders to work together, particularly in a federated model. 
-Most importantly, it creates compounding positive impact as the adoption of the platform increases.
-
 ## Supergraph vs alternative approaches
 
 <img width="1151" alt="Screen Shot 2024-04-03 at 4 15 45 PM" src="https://github.com/hasura/supergraph-io/assets/131160/c45c7b4b-b83e-4f2e-9465-71f820f470a4">
 
 ## Supergraph reference architecure
 
-### Basic architecture
+### Conceptual architecture
 
-- Supergraph engine: The service that receives a query from an API consumer. (Also called gateway, 
-- Connector: The service that encapsuates a particular domain, and receives queries from the engine.
+- Supergraph engine: The service that receives a query from an API consumer. (Eg: gateway, router)
+- Subgraph connector: The service that encapsuates a particular domain, and receives queries from the engine. (Eg: GraphQL server)
 
-![Screen Shot 2024-04-03 at 6 31 33 PM](https://github.com/hasura/supergraph-io/assets/131160/b113b5be-b48b-4e72-9fcc-ffa03d7a8643)
-
+![Screen Shot 2024-04-03 at 10 35 02 PM](https://github.com/hasura/supergraph-io/assets/131160/4dbd79e9-8779-4dbe-bed7-5926b1682eb6)
 
 ### Control plane
 
