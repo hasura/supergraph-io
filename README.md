@@ -35,9 +35,9 @@ To provide an API experience that makes the consumption experience truly self-se
 
 ### III. DISCOVER demand
 
-Helping producers understand how consumers are using their domain and what they need but aren't able to get is critical to help producers improve their domain and to help the organization understand which producers need to connect their domains to the supergraph. 
+Understanding how API consumers use their domain and identify their unmet needs is crucial for API producers. This insight allows API producers to enhance their domain. It also helps discover new domain owners to connect their domain into the supergraph.
 
-This requires 2 key capabilities to create a consumer-first, agile culture:
+This necessitates 2 key capabilities of the supergraph platform to create a consumer-first, agile culture:
 1. API consumption, API schema & portal analytics: A supergraph is analogous to a marketplace and needs to provide the marketplace owners and producers with insights to help improve the marketplace for the consumers.
 3. Ecosystem integrations: The supergraph platform should be able to integrate with existing communication and catalog tools, in particular to help understand _unmet_ demand of API consumers.
 
@@ -53,15 +53,20 @@ There are 3 components in the control plane of the supergraph
 2. The subgraph
 3. The supergraph
 
-![Supergraph control plane components](https://github.com/hasura/supergraph-io/assets/131160/e661efd8-9d0f-4340-a5a1-a119e9fc87ee)
+<img width="660" alt="Supergraph control plane components" src="https://github.com/hasura/supergraph-io/assets/131160/e661efd8-9d0f-4340-a5a1-a119e9fc87ee">
 
 The control plane should define the following SDLC to help keep the supergraph in sync with the domain as the underlying domain changes.
 
 ![Supergraph CI/CD](https://github.com/hasura/supergraph-io/assets/131160/e6fec5a3-e3da-447e-9ac3-5dc0ceef66d9)
 
 ### Distributed data plane
+The supergraph data plane is critical to enable high performance access to upstream domains so that API producers can maintain their domain without hidden future maintenance costs:
+![Supergraph data plane](https://github.com/hasura/supergraph-io/assets/131160/c6e1de9b-fe8f-4f9e-8503-7f655b02d9a9)
 
 ### Supergraph API schema
+
+The supergraph API is typically a GraphQL API. There are varying degrees of composability a GraphQL API can offer, as listed out in the following table:
+
 
 ### Ecosystem integration
 
