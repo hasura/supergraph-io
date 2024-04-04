@@ -22,7 +22,7 @@
     </thead>
     <tbody>
         <tr>
-          <td> <b></b>API gateway</b></td>
+          <td> <b>API gateway</b></td>
           <td>High</td>
           <td>N/A (no API aggregation features) </td>
           <td>Low</td>
