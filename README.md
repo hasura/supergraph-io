@@ -41,7 +41,7 @@ This necessitates 2 key capabilities of the supergraph platform to create a cons
 1. API consumption, API schema & portal analytics: A supergraph is analogous to a marketplace and needs to provide the marketplace owners and producers with insights to help improve the marketplace for the consumers.
 3. Ecosystem integrations: The supergraph platform should be able to integrate with existing communication and catalog tools, in particular to help understand _unmet_ demand of API consumers.
 
-**This closes the loop and allows the supergraph platform to create a vicious cycle of success for producers and consumers**.
+**This closes the loop and allows the supergraph platform to create a virtuous cycle of success for producers and consumers**.
 
 ## Supergraph reference architecure
 
