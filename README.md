@@ -46,7 +46,7 @@ This necessitates 2 key capabilities of the supergraph platform to create a cons
 
 **This closes the loop and allows the supergraph platform to create a virtuous cycle of success for producers and consumers**.
 
-## Supergraph reference architecure
+## Supergraph reference architecture
 
 ### CI/CD and build system (control plane)
 The control plane of the supergraph is critical to help domain owners [connect their domains](#i.-connect-domains) to the supergraph.
