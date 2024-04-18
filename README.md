@@ -11,8 +11,8 @@ A supergraph approach aims to build a flywheel of data access and supply to incr
 
 <img width="660" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
 
-### Core concepts
-#### I. CONNECT domains
+
+### I. CONNECT domains
 Domain owners (aka data owners or API producers) should be able to seamlessly connect their domains to the platform. A major challenge in building supergraph is the resistance to change by the domain owners. They often oppose having to build, operate and maintain another API layer, such as a GraphQL server that creates another wrapper on their domain. This reluctance and concern is understandable and completely valid and must be systematically addressed by the supergraph platform strategy and the supergraph reference architecture.
 
 This has two main implications for the subgraph connector's lifecycle and runtime:
@@ -23,7 +23,7 @@ Guaranteeing a smooth CI/CD process and high-performance connectivity gives doma
 
 **This unlocks self-serve connectivity for domain owners.**
 
-#### II. CONSUME APIs
+### II. CONSUME APIs
 
 API consumers should be able to discover and consume APIs in a way that doesn't require manual API integration, aggregation or composition effort as far as possible. 
 API consumers have several common needs when they're dealing with fixed API endpoints or specific data queries:
@@ -37,7 +37,7 @@ To provide an API experience that makes the consumption experience truly self-se
 
 **This unlocks self-serve consumption for API consumers**
 
-#### III. DISCOVER demand
+### III. DISCOVER demand
 
 Understanding how API consumers use their domain and identify their unmet needs is crucial for API producers. This insight allows API producers to enhance their domain. It also helps discover new domain owners to connect their domain into the supergraph.
 
