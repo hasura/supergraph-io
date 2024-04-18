@@ -1,15 +1,16 @@
 # The Supergraph Manifesto
 
-A supergraph is an architecture pattern and a federated operating model to help teams create a self-serve platform for data access, API integration/composition or GraphQL APIs.
+Supergraph is an architecture framework that offers reference architectures, design guidelines/principles and an operating model to help mulitple teams to collaborate on a self-serve platform for federated data access, API integration/composition or GraphQL APIs. An implementation artifact of the Supergraph architecture is called a supergraph (*lowercase `s`*).
 
 ![Before / After Supergraph](https://github.com/hasura/supergraph-io/assets/131160/2421b94e-724f-4e94-afee-61b2c81f38b7)
 
 When a supergraph is built with a GraphQL federation stack, the engine is often called a gateway or a router and the subgraph connectors are often GraphQL services.
 
-## Supergraph platform strategy
-A supergraph approach aims to build a flywheel of growth to keep improving self-service access to data and APIs.
+## Strategy and Core concepts
+A supergraph approach aims to build a flywheel of data access and supply to incrementally improve self-service access to data and APIs.
 
 <img width="660" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
+
 
 ### I. CONNECT domains
 Domain owners (aka data owners or API producers) should be able to seamlessly connect their domains to the platform. A major challenge in building supergraph is the resistance to change by the domain owners. They often oppose having to build, operate and maintain another API layer, such as a GraphQL server that creates another wrapper on their domain. This reluctance and concern is understandable and completely valid and must be systematically addressed by the supergraph platform strategy and the supergraph reference architecture.
@@ -46,8 +47,8 @@ This necessitates 2 key capabilities of the supergraph platform to create a cons
 
 **This closes the loop and allows the supergraph platform to create a virtuous cycle of success for producers and consumers**.
 
-## Supergraph reference architecture
-
+## Architecture guide
+<!-- this section perhaps doesn't need a reference architecture beyond what's already here. It works as a guide as is.-->
 ### CI/CD and build system (control plane)
 The control plane of the supergraph is critical to help domain owners [connect their domains](#i.-connect-domains) to the supergraph.
 
@@ -67,9 +68,11 @@ The supergraph data plane is critical to enable high performance access to upstr
 
 <img  width="800" alt="Supergraph data plane" src="https://github.com/hasura/supergraph-io/assets/131160/c6e1de9b-fe8f-4f9e-8503-7f655b02d9a9">
 
-### Supergraph API schema
+## API schema design guide 
+<!-- this section needs a reference architecture -->
+High-quality platform APIs are possible only with high quality subgraphs. This architecture framework offers the following design guidelines for subgraphs and a supergraph quality benchmark. 
 
-**Standardization**
+### Standardization
 
 A supergraph API schema should create standardized conventions on the following:
 - Queryable models vs Commands
@@ -82,7 +85,7 @@ A supergraph API schema should create standardized conventions on the following:
   - Sorting
   - Aggregations
 
-**Composability**
+### Composability
 
 The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
 
