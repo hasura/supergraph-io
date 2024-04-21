@@ -294,4 +294,5 @@ These composability attributes are what increase the level of self-serve composi
 ## More reading
 
 - [Use cases](/use-cases)
+- [Reference API schema](/reference-api-schema)
 - [FAQ](/faq)
