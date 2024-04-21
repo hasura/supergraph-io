@@ -70,7 +70,6 @@ The supergraph data plane is critical to enable high performance access to upstr
 
 ## API schema design guide 
 <!-- this section needs a reference architecture -->
-High-quality platform APIs are possible only with high quality subgraphs. This architecture framework offers the following design guidelines for subgraphs and a supergraph quality benchmark. 
 
 ### Standardization
 
@@ -78,7 +77,7 @@ A supergraph API schema should create standardized conventions on the following:
 
 <table>
 <tr>
-<td><b>Standardization Attribute</b></td> <td><b>Capability</b></td><td><b>Sample query</b></td>
+<td><b>Standardization Attribute</b></td> <td><b>Capability</b></td><td><b>Example</b></td>
 </tr>
 <tr>
 <td><b>S1</b></td>
@@ -189,11 +188,8 @@ query authorStatistics {
 
 **Prior art**
   - [Google Cloud API design guide](https://cloud.google.com/apis/design/resources)
-    - Resource/Model: A resource-oriented API is generally modeled as a resource hierarchy, where each node is either a simple resource or a collection resource. 
-    - Method/Command: resources are manipulated via a small set of methods
-  - Github API
-    - [collection/models](https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28): `GET /repos/{owner}/{repo}/pulls` lists pull requests in a specified repository. A `pull request` is a model. 
-    - [command](https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28#merge-a-pull-request): `PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge` merges a pull request into the base branch.
+    - Resource: A resource-oriented API is generally modeled as a resource hierarchy, where each node is either a simple resource or a collection resource
+    - Method: Resources are manipulated via a small set of methods
 
 ### Composability
 
@@ -201,7 +197,7 @@ The supergraph API is typically a GraphQL / JSON API. There are varying degrees 
 
 <table>
 <tr>
-<td><b>Composability Attribute</b></td> <td><b>Capability</b></td> <td><b>Description</b></td> <td><b>Example with query</b></td>
+<td><b>Composability Attribute</b></td> <td><b>Capability</b></td> <td><b>Description</b></td> <td><b>Example</b></td>
 </tr>
 <tr>
 <td><b>C1</b></td><td> Joining data</td> <td>Join related data together in a "foreign key" like join</td> 
@@ -292,7 +288,7 @@ query prolificAuthors {
 These composability attributes are what increase the level of self-serve composition and reduce the need for manual API aggregation and composition.
 
 > [!WARNING]  
-For a Supergraph platform to support powerful composition attributes to break data silos, it needs to define a mature supergraph-subgraph interface, without which a supergraph cannot be effective in isolation. See [Reference API schema](/reference-api-schema) for a concrete example. 
+For a Supergraph platform to support powerful composition attributes to break data silos, it needs to define a mature supergraph-subgraph interface. A supergraph engine cannot be effective in isolation. See [Reference API schema](/reference-api-schema) for a concrete example. 
 
 ## More reading
 
