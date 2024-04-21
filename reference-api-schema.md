@@ -281,3 +281,6 @@ title: String_comparison_exp
 ```
 </td>
 </table>
+
+> [!IMPORTANT]
+> Without a mature supergraph<>subgraph interface or domain-driven subgraph tools, to support this kind of composition you need to either implement new subgraphs (if the parent/child types are from different subgraphs) or revisit type definitions (if they are from the same subgraph) **for every composition permutation**.
