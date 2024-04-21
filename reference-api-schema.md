@@ -7,7 +7,7 @@ The following is a reference implementation for a schema with standardization at
 
 <tr>
 <td>
-    Type definition
+    Model type definition
 </td> 
 <td>
 
@@ -36,7 +36,7 @@ NA
 </tr>
 <tr>
 <td>
-    <b>Model</b> (<i>support for filtering, pagination, sorting and limits<i>)
+    <b>Models collection</b> (<i>support for filtering, pagination, sorting and limits<i>)
 </td> 
 <td>
 
@@ -98,7 +98,7 @@ query filteredAuthors {
 
 <tr>
 <td>
-    <b>Model - aggregates</b>
+    <b>Collection - aggregates</b>
 </td> 
 <td>
 
@@ -235,4 +235,49 @@ query findAuthors {
 
 
 
+</table>
+
+> [!IMPORTANT]  
+> The key to supporting composability lies in the quality of the API schema i.e. its ability to support composition on data relationships. For example, to support C2 or C5 (please see section on Composability for definitions), let's say, the type for that collections's `where` clause's argument will need to go further to support boolean expressions comprising of nested field's attributes.
+
+<table>
+<tr>
+<td><b>Before</b></td><td><b>After</b></td>
+</tr>
+<tr>
+<td>
+
+```graphql
+author_bool_exp
+_and: [author_bool_exp!]
+_not: author_bool_exp
+_or: [author_bool_exp!]
+id: Int_comparison_exp
+name: String_comparison_exp
+```
+
+</td>
+<td>
+
+```graphql
+author_bool_exp
+_and: [author_bool_exp!]
+_not: author_bool_exp
+_or: [author_bool_exp!]
+id: Int_comparison_exp
+name: String_comparison_exp
+articles: article_bool_exp # new argument type
+articles_aggregate: article_aggregate_bool_exp # new argument type
+
+
+article_bool_exp # new argument type definition
+_and: [article_bool_exp!]
+_not: article_bool_exp
+_or: [article_bool_exp!]
+author_id: Int_comparison_exp
+id: Int_comparison_exp
+publishDate: date_comparison_exp
+title: String_comparison_exp
+```
+</td>
 </table>
