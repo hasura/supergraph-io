@@ -82,54 +82,63 @@ A supergraph API schema should create standardized conventions on the following:
 <tr>
 <td><b>S1</b></td>
 <td>
-<b>Queryable models vs Commands</b></br>
-  - Models are collections of data that can be queried in standardized source-agnostic ways<br>
-  - Commands are methods that map to particular pieces of business logic that might return references to other commands or models
+<b>Models & Commands</b>
+<ul>
+  <li>Models are collections of data that can be queried in standardized source-agnostic ways (eg: resources)</li>
+  <li>Commands are methods that map to particular pieces of business logic that might return references to other commands or models(eg: methods)</li>
+</ul>
 </td> 
 <td>
-Modeling Author data type as a collection that can be queried
-  
-```graphql
-query author {
-  author {
-    id
-    name
-  }
-}
-```
-
-A search function that returns a subset of authors based on a search term
-
-```graphql
-query findAuthors {
-  search_authors(args: {search: "Einstein"}) {
-    id
-    name
-  }
-}
-```
-
+  <details> 
+    <summary>Example</summary>
+    Modeling Author data type as a collection that can be queried
+      
+    ```graphql
+    query author {
+      author {
+        id
+        name
+      }
+    }
+    ```
+    
+    A search function that returns a subset of authors based on a search term
+    
+    ```graphql
+    query findAuthors {
+      search_authors(args: {search: "Einstein"}) {
+        id
+        name
+      }
+    }
+    ```
+  </details>
 </td>
 </tr>
 
 <tr>
 <td><b>S2</b></td><td> Model filtering</td>
 <td>
-Get a list of articles published this year
-
-```graphql
-query articlesThisYear {
-  articles(where: {publishDate: {_gt: "2024-01-01"}}) {
-    id
-    name
-  }
-}
-```
+  <details>
+    <summary>Example</summary>
+    Get a list of articles published this year
+    
+    ```graphql
+    query articlesThisYear {
+      articles(where: {publishDate: {_gt: "2024-01-01"}}) {
+        id
+        name
+      }
+    }
+    ```
+  </details>
 </td>
 </tr>
 <tr>
 <td><b>S3</b></td><td> Model sorting</td>
 <td>
+  <details>
+    <summary>Example</summary>
 Get a list of articles sorted in reverse by the date of publishing
 
 ```graphql
@@ -141,11 +150,15 @@ query sortedArticles {
   }
 }
 ```
+    
+  </details>
 </td>
 </tr>
 <tr>
 <td><b>S4</b></td><td> Model pagination</td> 
 <td>
+  <details>
+    <summary>Example</summary>
 Paginate the above list with 20 objects per page and fetch the 3rd page
 
 ```graphql
@@ -157,6 +170,7 @@ query sortedArticlesThirdPage {
   }
 }
 ```
+</details>
 </td>
 </tr>
 
@@ -166,7 +180,8 @@ query sortedArticlesThirdPage {
 Model aggregations over fields
 </td> 
 <td>
-
+  <details>
+    <summary>Example</summary>
 Get a count of authors and their average age
 
 ```graphql
@@ -182,6 +197,7 @@ query authorStatistics {
   }
 }
 ```
+</details>
 </td>
 </tr>
 </table>
@@ -202,6 +218,8 @@ The supergraph API is typically a GraphQL / JSON API. There are varying degrees 
 <tr>
 <td><b>C1</b></td><td> Joining data</td> <td>Join related data together in a "foreign key" like join</td> 
 <td>
+  <details>
+    <summary>Example</summary>
 Get a list of authors and <b>their</b> articles
 
 ```graphql
@@ -216,12 +234,15 @@ query authorWithArticles {
   }
 }
 ```
+</details>
 </td>
 </tr>
 
 <tr>
 <td><b>C2</b></td><td> Nested filtering</td> <td>Filter a parent by a property of its child (<i>aka a property of a related entity</i>)</td> 
 <td>
+    <details>
+    <summary>Example</summary>
 Get a list of authors whose have published an article this year
 
 ```graphql
@@ -232,11 +253,14 @@ query recentlyActiveAuthors {
   }
 }
 ```
+</details>
 </td>
 </tr>
 <tr>
 <td><b>C3</b></td><td> Nested sorting </td> <td>Sort a parent by a property of its child(<i>aka a property of a related entity</i>)</td> 
 <td>
+    <details>
+    <summary>Example</summary>
 Get a list of articles sorted by the names of their author
 
 ```graphql
@@ -247,11 +271,14 @@ query sortedArticles {
   }
 }
 ```
+</details>
 </td>
 </tr>
 <tr>
 <td><b>C4</b></td><td> Nested pagination </td> <td>Fetch a paginated list of parents, along with a paginated &amp; sorted list of children for each parent</td> 
 <td>
+    <details>
+    <summary>Example</summary>
 Get the 2nd page of a list of authors and the first page of <b>their</b> articles, sorted by the article's title field
 
 ```graphql
@@ -266,21 +293,28 @@ query paginatedAuthorsWithSortedPaginatedArticles {
   }
 }
 ```
+</details>
 </td>
 </tr>
 <tr>
 <td><b>C5</b></td><td> Nested aggregation </td> <td>Aggregate a child/parent in the context of its parent/child</td> 
 <td>
-Get a list of prolific authors who have written more than a <b>total</b> of 50 articles
+    <details>
+    <summary>Example</summary>
+Get a list of authors and the number of articles written by each author
 
 ```graphql
 query prolificAuthors {
-  author(where: {articles_aggregate: {count: {predicate: {_gt: 50}}}}) {
+  author (limit: 10) {
     id
     name
+    articles_aggregate {
+      count
+    }
   }
 }
 ```
+</details>
 </td>
 </tr>
 </table>
