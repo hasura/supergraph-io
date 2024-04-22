@@ -16,7 +16,7 @@ The following is an excerpt from a complete reference GraphQL schema (*linked at
 </td> 
 <td>
 
-```graphql
+```
 Type type_name {
 field1: scalarType1!
 field2: scalarType2
