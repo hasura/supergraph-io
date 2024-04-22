@@ -7,18 +7,20 @@
 .fixed-col-width-1 {
   min-width: 140px;
   max-width: 140px;
+  width: 140px;
 }
 
 .fixed-col-width-2 {
   min-width: 160px;
   max-width: 160px;
+  width: 160px;
 }
 
 
-detail {
+details {
   margin-top: 10px;
 }
 
-detail summary {
+summary {
   font-size: $small-font-size;
 }
