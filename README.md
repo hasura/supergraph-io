@@ -94,25 +94,25 @@ A supergraph API schema should create standardized conventions on the following:
       <summary>Example</summary>
       Modeling Author data type as a collection that can be queried
         
-      ```graphql
-      query author {
-        author {
-          id
-          name
+      <code>
+        query author {
+          author {
+            id
+            name
+          }
         }
-      }
-      ```
-      
-      A search function that returns a subset of authors based on a search term
-      
-      ```graphql
-      query findAuthors {
-        search_authors(args: {search: "Einstein"}) {
-          id
-          name
+      </code>
+        
+        A search function that returns a subset of authors based on a search term
+        
+      <code>
+        query findAuthors {
+          search_authors(args: {search: "Einstein"}) {
+            id
+            name
+          }
         }
-      }
-      ```
+      </code>
     </details>
   </td>
   </tr>
