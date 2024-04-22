@@ -48,6 +48,13 @@ $on-large:         $on-laptop !default;
   font-size: $base-font-size * $ratio;
 }
 
+detail {
+  margin-top: 10px;
+}
+
+detail summary {
+  font-size: $small-font-size;
+}
 // Import partials.
 @import
   "minima/base",
