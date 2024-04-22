@@ -17,7 +17,7 @@ The following is an excerpt from a complete reference GraphQL schema (*linked at
 <td>
 
 ```
-Type type_name {
+type type_name {
 field1: scalarType1!
 field2: scalarType2
 }
@@ -28,7 +28,7 @@ field2: scalarType2
 <td>
 
 ```graphql
-Type Author {
+type Author {
 id: Int!
 name: String
 }
