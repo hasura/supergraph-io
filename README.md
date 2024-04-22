@@ -88,7 +88,7 @@ A supergraph API schema should create standardized conventions on the following:
   - Commands are methods that map to particular pieces of business logic that might return references to other commands or models
 </td> 
 <td>
-Modeling Author data type as a collection that can be queried
+Modeling Author data type as a collection that can be queried <br>
   
 ```graphql
 query author {
