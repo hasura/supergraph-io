@@ -123,14 +123,14 @@ A supergraph API schema should create standardized conventions on the following:
       <summary>Example</summary>
       Get a list of articles published this year
       
-      ```graphql
-      query articlesThisYear {
-        articles(where: {publishDate: {_gt: "2024-01-01"}}) {
-          id
-          name
-        }
-      }
-      ```
+```graphql
+ query articlesThisYear {
+    articles(where: {publishDate: {_gt: "2024-01-01"}}) {
+      id
+      name
+    }
+  }
+```
   </details>
   </td>
   </tr>
