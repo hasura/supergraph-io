@@ -16,7 +16,7 @@ The following is an excerpt from a complete reference GraphQL schema (*linked at
 </td> 
 <td>
 
-```
+```graphql
 type type_name {
 field1: scalarType1!
 field2: scalarType2
@@ -46,7 +46,7 @@ NA
 <td>
 
 ```graphql
-field(
+type field(
 distinct_on: [field_select_column!]
 limit: Int
 offset: Int
@@ -59,7 +59,7 @@ where: field_bool_exp
 <td>
 
 ```graphql
-author(
+type author(
 distinct_on: [author_select_column!]
 limit: Int
 offset: Int
@@ -67,14 +67,15 @@ order_by: [author_order_by!]
 where: author_bool_exp #defined below
 ): [author!]!
 
-author_bool_exp #argument type defination
+type author_bool_exp( #argument type defination
 _and: [author_bool_exp!]
 _not: author_bool_exp
 _or: [author_bool_exp!]
 id: Int_comparison_exp #defined below
 name: String_comparison_exp
+)
 
-Int_comparison_exp #argument type defination
+type Int_comparison_exp( #argument type defination
 _eq: Int
 _gt: Int
 _gte: Int
@@ -84,6 +85,7 @@ _lt: Int
 _lte: Int
 _neq: Int
 _nin: [Int!]
+)
 ``` 
 
 </td> 
@@ -108,7 +110,7 @@ query filteredAuthors {
 <td>
 
 ```graphql
-field_aggregate(
+type field_aggregate(
 distinct_on: [field_select_column!]
 limit: Int
 offset: Int
@@ -121,7 +123,7 @@ where: field_bool_exp
 <td>
 
 ```graphql
-author_aggregate(
+type author_aggregate(
 distinct_on: [author_select_column!]
 limit: Int
 offset: Int
@@ -129,16 +131,18 @@ order_by: [author_order_by!]
 where: author_bool_exp
 ): author_aggregate! #defined below
 
-author_aggregate #argument type defination
+type author_aggregate( #argument type defination
 aggregate: author_aggregate_fields #defined below
 nodes: [author!]!
+)
 
-author_aggregate_fields #argument type defination
+type author_aggregate_fields( #argument type defination
 avg: author_avg_fields
 count(columns: [author_select_column!]distinct: Boolean): Int!
 max: author_max_fields
 min: author_min_fields
 stddev: author_stddev_fields
+)
 ``` 
 
 </td> 
@@ -167,14 +171,14 @@ query filteredAuthorAggregate {
 <td>
 
 ```graphql
-field_by_pk(id_field: scalarType1!): type
+type field_by_pk(id_field: scalarType1!): type
 ``` 
 </td> 
 
 <td>
 
 ```graphql
-author_by_pk(id: Int!): author
+type author_by_pk(id: Int!): author
 ``` 
 
 </td> 
@@ -199,7 +203,7 @@ query author {
 <td>
 
 ```graphql
-command_name (
+type command_name (
 args: command_args!
 distinct_on: [model_select_column!]
 limit: Int
@@ -213,7 +217,7 @@ where: field_bool_exp
 <td>
 
 ```graphql
-search_authors(
+type search_authors(
 args: search_authors_args!
 distinct_on: [author_select_column!]
 limit: Int
