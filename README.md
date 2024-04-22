@@ -94,26 +94,26 @@ A supergraph API schema should create standardized conventions on the following:
       <summary>Example</summary>
       Modeling Author data type as a collection that can be queried
         
-      <code>
+      ```graphql
         query author {
           author {
             id
             name
           }
         }
-      </code>
+      ```
         
         A search function that returns a subset of authors based on a search term
         
-      <code>
+      ```graphql
         query findAuthors {
           search_authors(args: {search: "Einstein"}) {
             id
             name
           }
         }
-      </code>
-    </details>
+      ```
+ </details>
   </td>
   </tr>
 
@@ -134,28 +134,27 @@ A supergraph API schema should create standardized conventions on the following:
         }
       }
       ```
-    </details>
+  </details>
   </td>
   </tr>
   <tr>
   <td><b>S3</b></td>
   <td> 
     Model sorting
-    <details>
-      <summary>Example</summary>
-    Get a list of articles sorted in reverse by the date of publishing
+  <details>
+    <summary>Example</summary>
+  Get a list of articles sorted in reverse by the date of publishing
 
-    ```graphql
-    query sortedArticles {
-      article(order_by: {publishDate: desc}) {
-        id
-        title
-        author_id
-      }
+  ```graphql
+  query sortedArticles {
+    article(order_by: {publishDate: desc}) {
+      id
+      title
+      author_id
     }
-    ```
-      
-    </details>
+  }
+  ```
+  </details>
   </td>
   </tr>
   <tr>
