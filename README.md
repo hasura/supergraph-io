@@ -76,132 +76,132 @@ The supergraph data plane is critical to enable high performance access to upstr
 A supergraph API schema should create standardized conventions on the following:
 
 <table>
-<thead>
-<tr>
-<td style="width: 140px"><b>Standardization Attribute</b></td> <td><b>Capability</b></td><td><b>Example</b></td>
-</tr>
-<tr>
-</thead>
+  <thead>
+    <tr>
+      <td style="width: 140px"><b>Standardization Attribute</b></td>
+      <td><b>Capability</b></td>
+    </tr>
+  </thead>
 <tbody>
-<td><b>S1</b></td>
-<td>
-<b>Models & Commands</b>
-<ul>
-  <li>Models are collections of data that can be queried in standardized source-agnostic ways (eg: resources)</li>
-  <li>Commands are methods that map to particular pieces of business logic that might return references to other commands or models(eg: methods)</li>
-</ul>
-  <details> 
-    <summary>Example</summary>
-    Modeling Author data type as a collection that can be queried
+  <td><b>S1</b></td>
+  <td>
+  <b>Models & Commands</b>
+  <ul>
+    <li>Models are collections of data that can be queried in standardized source-agnostic ways (eg: resources)</li>
+    <li>Commands are methods that map to particular pieces of business logic that might return references to other commands or models(eg: methods)</li>
+  </ul>
+    <details> 
+      <summary>Example</summary>
+      Modeling Author data type as a collection that can be queried
+        
+      ```graphql
+      query author {
+        author {
+          id
+          name
+        }
+      }
+      ```
       
-    ```graphql
-    query author {
-      author {
-        id
-        name
-      }
-    }
-    ```
-    
-    A search function that returns a subset of authors based on a search term
-    
-    ```graphql
-    query findAuthors {
-      search_authors(args: {search: "Einstein"}) {
-        id
-        name
-      }
-    }
-    ```
-  </details>
-</td>
-</tr>
-
-<tr>
-<td><b>S2</b></td>
-<td>
-  Model filtering
-  <details>
-    <summary>Example</summary>
-    Get a list of articles published this year
-    
-    ```graphql
-    query articlesThisYear {
-      articles(where: {publishDate: {_gt: "2024-01-01"}}) {
-        id
-        name
-      }
-    }
-    ```
-  </details>
-</td>
-</tr>
-<tr>
-<td><b>S3</b></td>
-<td> 
-  Model sorting
-  <details>
-    <summary>Example</summary>
-Get a list of articles sorted in reverse by the date of publishing
-
-```graphql
-query sortedArticles {
-  article(order_by: {publishDate: desc}) {
-    id
-    title
-    author_id
-  }
-}
-```
-    
-  </details>
-</td>
-</tr>
-<tr>
-<td><b>S4</b></td>
-<td> 
-  Model pagination
-  <details>
-    <summary>Example</summary>
-Paginate the above list with 20 objects per page and fetch the 3rd page
-
-```graphql
-query sortedArticlesThirdPage {
-  article(order_by: {publishDate: desc}, offset: 40, limit: 20) {
-    id
-    title
-    author_id
-  }
-}
-```
-</details>
-</td>
-</tr>
-
-<tr>
-<td><b>S5</b></td>
-<td> 
-  Model aggregations over fields
-  <details>
-    <summary>Example</summary>
-Get a count of authors and their average age
-
-```graphql
-query authorStatistics {
-  author_aggregate {
-    aggregate {
-      count # basic aggregation support by any model
-      avg { # supported over any numeric fields of a type
-        age
-      }
+      A search function that returns a subset of authors based on a search term
       
+      ```graphql
+      query findAuthors {
+        search_authors(args: {search: "Einstein"}) {
+          id
+          name
+        }
+      }
+      ```
+    </details>
+  </td>
+  </tr>
+
+  <tr>
+  <td><b>S2</b></td>
+  <td>
+    Model filtering
+    <details>
+      <summary>Example</summary>
+      Get a list of articles published this year
+      
+      ```graphql
+      query articlesThisYear {
+        articles(where: {publishDate: {_gt: "2024-01-01"}}) {
+          id
+          name
+        }
+      }
+      ```
+    </details>
+  </td>
+  </tr>
+  <tr>
+  <td><b>S3</b></td>
+  <td> 
+    Model sorting
+    <details>
+      <summary>Example</summary>
+    Get a list of articles sorted in reverse by the date of publishing
+
+    ```graphql
+    query sortedArticles {
+      article(order_by: {publishDate: desc}) {
+        id
+        title
+        author_id
+      }
+    }
+    ```
+      
+    </details>
+  </td>
+  </tr>
+  <tr>
+  <td><b>S4</b></td>
+  <td> 
+    Model pagination
+    <details>
+      <summary>Example</summary>
+  Paginate the above list with 20 objects per page and fetch the 3rd page
+
+  ```graphql
+  query sortedArticlesThirdPage {
+    article(order_by: {publishDate: desc}, offset: 40, limit: 20) {
+      id
+      title
+      author_id
     }
   }
-}
-```
-</details>
-</td>
-</tr>
+  ```
+  </details>
+  </td>
+  </tr>
+
+  <tr>
+  <td><b>S5</b></td>
+  <td> 
+    Model aggregations over fields
+    <details>
+      <summary>Example</summary>
+  Get a count of authors and their average age
+
+  ```graphql
+  query authorStatistics {
+    author_aggregate {
+      aggregate {
+        count # basic aggregation support by any model
+        avg { # supported over any numeric fields of a type
+          age
+        }
+        
+      }
+    }
+  }
+  ```
+  </details>
+  </td>
+  </tr>
 </tbody>
 </table>
 
