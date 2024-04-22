@@ -287,9 +287,6 @@ query prolificAuthors {
 
 These composability attributes are what increase the level of self-serve composition and reduce the need for manual API aggregation and composition.
 
-> [!WARNING]  
-For a Supergraph platform to support powerful composition attributes to break data silos, it needs to define a mature supergraph-subgraph interface. A supergraph engine cannot be effective in isolation. See [Reference API schema](/reference-api-schema) for a concrete example. 
-
 ## More reading
 
 - [Use cases](/use-cases)
