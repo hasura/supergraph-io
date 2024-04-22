@@ -121,6 +121,7 @@ A supergraph API schema should create standardized conventions on the following:
   <td><b>S2</b></td>
   <td>
     Model filtering
+    <br/>
     <details>
       <summary>Example</summary>
       Get a list of articles published this year
