@@ -70,36 +70,225 @@ The supergraph data plane is critical to enable high performance access to upstr
 
 ## API schema design guide 
 <!-- this section needs a reference architecture -->
-High-quality platform APIs are possible only with high quality subgraphs. This architecture framework offers the following design guidelines for subgraphs and a supergraph quality benchmark. 
 
 ### Standardization
 
 A supergraph API schema should create standardized conventions on the following:
-- Queryable models vs Commands
-  - Models are collections of data that can be queried in standardized ways
+
+<table>
+<tr>
+<td><b>Standardization Attribute</b></td> <td><b>Capability</b></td><td><b>Example</b></td>
+</tr>
+<tr>
+<td><b>S1</b></td>
+<td>
+<b>Queryable models vs Commands</b></br>
+  - Models are collections of data that can be queried in standardized source-agnostic ways<br>
   - Commands are methods that map to particular pieces of business logic that might return references to other commands or models
-- Standardized conventions on queryable model: While each model might only expose some ways of querying it, the syntax and conventions for standard query operations should be standardized
-  - Joins
-  - Filtering
-  - Pagination
-  - Sorting
-  - Aggregations
+</td> 
+<td>
+Modeling Author data type as a collection that can be queried
+  
+```graphql
+query author {
+  author {
+    id
+    name
+  }
+}
+```
+
+A search function that returns a subset of authors based on a search term
+
+```graphql
+query findAuthors {
+  search_authors(args: {search: "Einstein"}) {
+    id
+    name
+  }
+}
+```
+
+</td>
+</tr>
+
+<tr>
+<td><b>S2</b></td><td> Model filtering</td>
+<td>
+Get a list of articles published this year
+
+```graphql
+query articlesThisYear {
+  articles(where: {publishDate: {_gt: "2024-01-01"}}) {
+    id
+    name
+  }
+}
+```
+</td>
+</tr>
+<tr>
+<td><b>S3</b></td><td> Model sorting</td>
+<td>
+Get a list of articles sorted in reverse by the date of publishing
+
+```graphql
+query sortedArticles {
+  article(order_by: {publishDate: desc}) {
+    id
+    title
+    author_id
+  }
+}
+```
+</td>
+</tr>
+<tr>
+<td><b>S4</b></td><td> Model pagination</td> 
+<td>
+Paginate the above list with 20 objects per page and fetch the 3rd page
+
+```graphql
+query sortedArticlesThirdPage {
+  article(order_by: {publishDate: desc}, offset: 40, limit: 20) {
+    id
+    title
+    author_id
+  }
+}
+```
+</td>
+</tr>
+
+<tr>
+<td><b>S5</b></td>
+<td> 
+Model aggregations over fields
+</td> 
+<td>
+
+Get a count of authors and their average age
+
+```graphql
+query authorStatistics {
+  author_aggregate {
+    aggregate {
+      count # basic aggregation support by any model
+      avg { # supported over any numeric fields of a type
+        age
+      }
+      
+    }
+  }
+}
+```
+</td>
+</tr>
+</table>
+
+**Prior art**
+  - [Google Cloud API design guide](https://cloud.google.com/apis/design/resources)
+    - Resource: A resource-oriented API is generally modeled as a resource hierarchy, where each node is either a simple resource or a collection resource
+    - Method: Resources are manipulated via a small set of methods
 
 ### Composability
 
 The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
 
-| Composability Attribute | Capability | Description |
-| :-- | :-- | :-- | 
-| C1 | Joining data | Join related data together in a "foreign key" like join |
-| C2 | Nested filtering | Filter a parent by a property of its child (aka a property of a related entity) |
-| C3 | Nested sorting | Sort a parent by a property of its child (aka a property of a related entity) |
-| C4 | Nested pagination | Fetch a paginated list of parents, along with a paginated &amp; sorted list of children for each parent |
-| C5 | Nested aggregation | Aggregate a child in the context of its parent |
+<table>
+<tr>
+<td><b>Composability Attribute</b></td> <td><b>Capability</b></td> <td><b>Description</b></td> <td><b>Example</b></td>
+</tr>
+<tr>
+<td><b>C1</b></td><td> Joining data</td> <td>Join related data together in a "foreign key" like join</td> 
+<td>
+Get a list of authors and <b>their</b> articles
+
+```graphql
+query authorWithArticles {
+  author {
+    id
+    name
+    articles {
+      id
+      title
+    }
+  }
+}
+```
+</td>
+</tr>
+
+<tr>
+<td><b>C2</b></td><td> Nested filtering</td> <td>Filter a parent by a property of its child (<i>aka a property of a related entity</i>)</td> 
+<td>
+Get a list of authors whose have published an article this year
+
+```graphql
+query recentlyActiveAuthors {
+  author(where: {articles: {publishDate: {_gt: "2024-01-01"}}}) {
+    id
+    name
+  }
+}
+```
+</td>
+</tr>
+<tr>
+<td><b>C3</b></td><td> Nested sorting </td> <td>Sort a parent by a property of its child(<i>aka a property of a related entity</i>)</td> 
+<td>
+Get a list of articles sorted by the names of their author
+
+```graphql
+query sortedArticles {
+  article(order_by: {author: {name: asc}}) {
+    id
+    title
+  }
+}
+```
+</td>
+</tr>
+<tr>
+<td><b>C4</b></td><td> Nested pagination </td> <td>Fetch a paginated list of parents, along with a paginated &amp; sorted list of children for each parent</td> 
+<td>
+Get the 2nd page of a list of authors and the first page of <b>their</b> articles, sorted by the article's title field
+
+```graphql
+query paginatedAuthorsWithSortedPaginatedArticles {
+  author(offset: 10, limit: 20) {
+    id
+    name
+    articles(offset: 0, limit: 25, order_by: {title: asc}) {
+      title
+      publishDate
+    }
+  }
+}
+```
+</td>
+</tr>
+<tr>
+<td><b>C5</b></td><td> Nested aggregation </td> <td>Aggregate a child/parent in the context of its parent/child</td> 
+<td>
+Get a list of prolific authors who have written more than a <b>total</b> of 50 articles
+
+```graphql
+query prolificAuthors {
+  author(where: {articles_aggregate: {count: {predicate: {_gt: 50}}}}) {
+    id
+    name
+  }
+}
+```
+</td>
+</tr>
+</table>
 
 These composability attributes are what increase the level of self-serve composition and reduce the need for manual API aggregation and composition.
 
 ## More reading
 
 - [Use cases](/use-cases)
+- [Reference API schema](/reference-api-schema)
 - [FAQ](/faq)
