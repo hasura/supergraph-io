@@ -78,7 +78,7 @@ A supergraph API schema should create standardized conventions on the following:
 <table>
   <thead>
     <tr>
-      <td style="min-width: 140px"><b>Standardization Attribute</b></td>
+      <td class="fixed-col-width-1"><b>Standardization Attribute</b></td>
       <td><b>Capability</b></td>
     </tr>
   </thead>
@@ -215,8 +215,8 @@ The supergraph API is typically a GraphQL / JSON API. There are varying degrees 
 <table>
 <thead>
 <tr>
-<td style="min-width: 140px"><b>Composability Attribute</b></td>
-<td style="min-width: 180px"><b>Capability</b></td> <td><b>Description</b></td>
+<td class="fixed-col-width-1"><b>Composability Attribute</b></td>
+<td class="fixed-col-width-2"><b>Capability</b></td> <td><b>Description</b></td>
 </tr>
 </thead>
 <tr>
