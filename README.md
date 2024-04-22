@@ -13,7 +13,7 @@ A supergraph approach aims to build a flywheel of data access and supply to incr
 
 
 ### I. CONNECT domains
-Domain owners (aka data owners or API producers) should be able to seamlessly connect their domains to the platform. A major challenge in building supergraph is the resistance to change by the domain owners. They often oppose having to build, operate and maintain another API layer, such as a GraphQL server that creates another wrapper on their domain. This reluctance and concern is understandable and completely valid and must be systematically addressed by the supergraph platform strategy and the supergraph reference architecture.
+Domain owners (or data owners, or API producers) should be able to seamlessly connect their domains to the platform. A major challenge in building supergraph is the resistance to change by the domain owners. They often oppose having to build, operate and maintain another API layer, such as a GraphQL server that creates another wrapper on their domain. This reluctance and concern is understandable and completely valid and must be systematically addressed by the supergraph platform strategy and the supergraph reference architecture.
 
 This has two main implications for the subgraph connector's lifecycle and runtime:
 1. **Subgraph connector CI/CD**: As domain owners change their domains, the API contract published via the supergraph engine, must stay in sync with the least amount of overhead for the domain owner. The SDLC, change-management or CI/CD process of the domain owners must involve updating their API contract (eg: versioning), prevent breaking changes and keeping documentation up to date.
@@ -247,7 +247,7 @@ query authorWithArticles {
 <tr>
 <td><b>C2</b></td>
 <td> Nested filtering</td>
-<td>Filter a parent by a property of its child (<i>aka a property of a related entity</i>)
+<td>Filter a parent by a property of its child (i.e. a property of a related entity)
     <details>
     <summary>Example</summary>
 Get a list of authors whose have published an article this year
@@ -266,7 +266,7 @@ query recentlyActiveAuthors {
 <tr>
 <td><b>C3</b></td>
 <td> Nested sorting </td>
-<td>Sort a parent by a property of its child(<i>aka a property of a related entity</i>)
+<td>Sort a parent by a property of its child (i.e. a property of a related entity)
     <details>
     <summary>Example</summary>
 Get a list of articles sorted by the names of their author
