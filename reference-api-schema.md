@@ -246,4 +246,4 @@ query findAuthors {
 
 </table>
 
-[Complete reference GraphQL schema](/complete-reference-graphql-schema.graphql)
+[Complete reference GraphQL schema](/full-reference-graphql-schema.md)
