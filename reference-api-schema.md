@@ -1,4 +1,9 @@
-The following is a reference implementation for a schema with standardization attributes over a table `authors` and a database function `search_author` that returns `author` search results (*you can extrapolate this to existing REST APIs and other entities in your domain*).
+The following is an excerpt from a complete reference GraphQL schema (*linked at the end*) that:
+  - is built on 3 data domains `author` (which includes a function `search_author` that returns `author` search results), `article` and `rating`
+  - implements all standardization attributes (S1-S5) by implementing filtering, sorting, pagination, aggregations for the models' collections as well as implementing a command for the `search` function
+  - implements all composability attributes (C1-C5) by leveraging the following relationships between the 3 domains:
+      - `author` <> `article` have a `1:many` relationship
+      - `article` <> `rating` have a `1:many` relationship (*many users can leave a rating for the same article*)
 
 <table>
 <tr>
@@ -237,50 +242,4 @@ query findAuthors {
 
 </table>
 
-> [!IMPORTANT]  
-> The key to supporting composability lies in the quality of the API schema i.e. its ability to support composition on data relationships. For example, to support C2 or C5 (please see section on Composability for definitions), let's say, the type for that collections's `where` clause's argument will need to go further to support boolean expressions comprising of nested field's attributes.
-
-<table>
-<tr>
-<td><b>Before</b></td><td><b>After</b></td>
-</tr>
-<tr>
-<td>
-
-```graphql
-author_bool_exp
-_and: [author_bool_exp!]
-_not: author_bool_exp
-_or: [author_bool_exp!]
-id: Int_comparison_exp
-name: String_comparison_exp
-```
-
-</td>
-<td>
-
-```graphql
-author_bool_exp
-_and: [author_bool_exp!]
-_not: author_bool_exp
-_or: [author_bool_exp!]
-id: Int_comparison_exp
-name: String_comparison_exp
-articles: article_bool_exp # new argument type
-articles_aggregate: article_aggregate_bool_exp # new argument type
-
-
-article_bool_exp # new argument type definition
-_and: [article_bool_exp!]
-_not: article_bool_exp
-_or: [article_bool_exp!]
-author_id: Int_comparison_exp
-id: Int_comparison_exp
-publishDate: date_comparison_exp
-title: String_comparison_exp
-```
-</td>
-</table>
-
-> [!IMPORTANT]
-> Without a mature supergraph<>subgraph interface or domain-driven subgraph tools, to support this kind of composition you need to either implement new subgraphs (if the parent/child types are from different subgraphs) or revisit type definitions (if they are from the same subgraph) **for every composition permutation**.
+[Complete reference GraphQL schema](/complete-reference-graphql-schema.graphql)
