@@ -78,20 +78,21 @@ A supergraph API schema should create standardized conventions on the following:
 <table>
   <thead>
     <tr>
-      <td style="width: 140px"><b>Standardization Attribute</b></td>
+      <td style="min-width: 140px"><b>Standardization Attribute</b></td>
       <td><b>Capability</b></td>
     </tr>
   </thead>
 <tbody>
   <td><b>S1</b></td>
   <td>
-  <b>Models & Commands</b>
+  Separating models (resources) & commands (methods)
+    <details> 
+      <summary>Example</summary>
+
   <ul>
     <li>Models are collections of data that can be queried in standardized source-agnostic ways (eg: resources)</li>
     <li>Commands are methods that map to particular pieces of business logic that might return references to other commands or models(eg: methods)</li>
   </ul>
-    <details> 
-      <summary>Example</summary>
         
 ```graphql
   # A standardized way to fetch a list of authors
@@ -214,8 +215,8 @@ The supergraph API is typically a GraphQL / JSON API. There are varying degrees 
 <table>
 <thead>
 <tr>
-<td style="width: 140px"><b>Composability Attribute</b></td>
-<td style="width: 180px"><b>Capability</b></td> <td><b>Description</b></td>
+<td style="min-width: 140px"><b>Composability Attribute</b></td>
+<td style="min-width: 180px"><b>Capability</b></td> <td><b>Description</b></td>
 </tr>
 </thead>
 <tr>
