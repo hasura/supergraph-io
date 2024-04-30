@@ -1,6 +1,6 @@
 # The Supergraph Manifesto
 
-Supergraph is an architecture framework that offers reference architectures, design guidelines/principles and an operating model to help mulitple teams to collaborate on a self-serve platform for federated data access, API integration/composition or GraphQL APIs. An implementation artifact of the Supergraph architecture is called a supergraph (*lowercase `s`*).
+Supergraph is an architecture framework that offers reference architectures, design guidelines/principles and an operating model to help multiple teams to collaborate on a self-serve platform for federated data access, API integration/composition or GraphQL APIs. An implementation artifact of the Supergraph architecture is called a supergraph (*lowercase `s`*).
 
 ![Before / After Supergraph](https://github.com/hasura/supergraph-io/assets/131160/2421b94e-724f-4e94-afee-61b2c81f38b7)
 
