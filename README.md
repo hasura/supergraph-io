@@ -8,7 +8,7 @@ When a supergraph is built with a GraphQL federation stack, the engine is often 
 
 A supergraph is typically used for the following 3 benefits:
 1. [Self-serve API composition](/api-composition): A self-serve operating model for API integration, orchestration & aggregation
-2. Realtime data-integration: A federated data layer that prevents the need of preemptively moving data from one place to another. Related: Data mesh, data products
+2. Federated data access layer: A federated data layer that allows realtime access to data sources with cross-domain composability (joins, filtering etc.) Related: Data mesh, data products
 3. Incremental monolith decomposition: A stable API that provides a zero-downtime and incremental approach to decomposing monoliths
 
 ## Strategy and Core concepts
