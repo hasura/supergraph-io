@@ -7,6 +7,8 @@ A key driver for the Supergraph is the need for API composition. GraphQL (monoli
 
 While domain owners (producers) are owners of a domain API, in a multi-consumer & multi-producer scenario, API consumers often also need specialized APIs that are optimized for their use-cases.
 
+![Screen Shot 2024-05-13 at 10 22 07 PM](https://github.com/hasura/supergraph-io/assets/131160/53f3de0c-1f35-4032-a63d-9c2602566073)
+
 This creates a tension between "domain driven" API design and ownership and "consumer driven" API design.
 
 | Design & Ownership | Benefits | Challenges |
@@ -77,39 +79,39 @@ simple aggregation/batching use-cases.
   </thead>
     <tbody>
     <tr>
-        <td><b>Integration</b></td>
+        <td><b>1. Integration</b></td>
         <td><i>Making it easy for API consumers to integrate APIs into their services</i></td>
     </tr>
     <tr>
-        <td>Multiple API formats</td>
+        <td>1.1 Multiple API formats</td>
         <td>Can the supergraph platform to automatically provide output formats beyond GraphQL? Eg: REST/OpenAPI<br/> This is required to prevent a lock in to the GraphQL protocol as needs change over time.</td>
     </tr>
     <tr>
-        <td>Documentation</td>
+        <td>1.2 Documentation</td>
         <td>Does the supergraph platform help domain owners maintain documentation? If the underlying domain (database, code or APIs) are already documented, are those automatically picked up by the supergraph platform?</td>
     </tr>
     <tr>
-        <td>Standardization</td>
+        <td>1.3 Standardization</td>
         <td>Does the supergraph platform provide or enforce a standardized domain API design? (Eg: pagination, filtering, sorting etc) </td>
     </tr>
     <tr>
-        <td><b>Aggregation</b></td>
+        <td><b>2. Aggregation</b></td>
         <td><i>Making it easy for API consumers to aggregate/batch multiple API calls into one</i></td>
     </tr>
     <tr>
-        <td>Relationships</td>
+        <td>2.1 Relationships</td>
         <td>Does the supergraph provide a way of creating relationships between any 2 entities or endpoints without requiring changes from the domain owners</td>
     </tr>
     <tr>
-        <td>Composability</td>
+        <td>2.2 Composability</td>
         <td>How many "join" features does the supergraph provide, Given a relationship between 2 entities in the supergraph?</td>
     </tr>
     <tr>
-        <td><b>Orchestration</b></td>
+        <td><b>3. Orchestration</b></td>
         <td>Making it easy for supergraph stakeholders to author custom API orchestration</td>
     </tr>
     <tr>
-        <td>Federated mutations / decoupled orchestration business logic </td>
+        <td>3.1 Federated mutations / decoupled orchestration business logic </td>
         <td>Does the supergraph provide a way to author orchestration flows within or across underlying domains? </td>
     </tr>
     </tbody>
