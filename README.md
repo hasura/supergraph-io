@@ -1,102 +1,117 @@
 # The Supergraph Manifesto
 
-A supergraph is an architecture pattern and a federated operating model to help teams create a self-serve platform for data access, API integration/composition or GraphQL APIs.
+## Introduction
 
-![Before / After Supergraph](https://github.com/hasura/supergraph-io/assets/131160/2421b94e-724f-4e94-afee-61b2c81f38b7)
+In data API design, a Supergraph is an API development methodology that offers reference specifications, design 
+principles and an operating model. By implementing a Supergraph methodology, multiple teams in an organization can 
+easily collaborate to deliver a modular, interconnected resource of data and logic and create a single, powerful, 
+self-serve endpoint for API consumers.
 
-When a supergraph is built with a GraphQL federation stack, the engine is often called a gateway or a router and the subgraph connectors are often GraphQL services.
+## Table of Definitions
+| Term               | Definition                                                                                                                     |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Supergraph**     | A Supergraph is an API creation methodology that offers reference specifications, design principles and an operating model.    |
+| **supergraph API** | A modular, interconnected resource of data and logic as a single, powerful, self-serve API endpoint.                           |
+| **Engine**         | Often referred to as a gateway or router in a GraphQL federation stack, managing API requests and responses.                   |
+| **Data Domain**    | A distinct area of functionality or data.                                                                                      |
+| **Subgraph**       | A modular component that acts as a self-contained entity within a larger supergraph and often represents a single data domain. |
+| **API Consumer**   | An entity that uses APIs to access data and functionality.                                                                     |
+| **API Producer**   | An entity that creates and maintains APIs.                                                                                     |
 
-## Supergraph platform strategy
-A supergraph approach aims to build a flywheel of growth to keep improving self-service access to data and APIs.
+## Before the Supergraph
+In conventional API design, data consumers need to manually access, integrate, and compose data from multiple 
+endpoints to get the data they need. This is time-consuming, error-prone, and requires deep domain knowledge, often 
+resulting in brittle integrations.
 
-<img width="660" alt="Supergraph platform flywheel" src="https://github.com/hasura/supergraph-io/assets/131160/c6583319-55d8-4854-b593-1f6c1e6b3f05">
+Infrastructure must also be built and maintained to support each of these data-access processes, and individual 
+routes or resolvers built and maintained for each data access requirement.
 
-### I. CONNECT domains
-Domain owners (aka data owners or API producers) should be able to seamlessly connect their domains to the platform. A major challenge in building supergraph is the resistance to change by the domain owners. They often oppose having to build, operate and maintain another API layer, such as a GraphQL server that creates another wrapper on their domain. This reluctance and concern is understandable and completely valid and must be systematically addressed by the supergraph platform strategy and the supergraph reference architecture.
+![supergraphioERD.png](assets/supergraphioERD.png)
 
-This has two main implications for the subgraph connector's lifecycle and runtime:
-1. **Subgraph connector CI/CD**: As domain owners change their domains, the API contract published via the supergraph engine, must stay in sync with the least amount of overhead for the domain owner. The SDLC, change-management or CI/CD process of the domain owners must involve updating their API contract (eg: versioning), prevent breaking changes and keeping documentation up to date.
-2. **Subgraph connector performance**: The subgraph connector must not _reduce_ performance as compared to what is provided by accessing the underlying domain directly. API performance characteristics as measured by latency, payload size &amp; concurrency.
+## Benefits
+A Supergraph provides the following key benefits:
 
-Guaranteeing a smooth CI/CD process and high-performance connectivity gives domain owners confidence that they can connect their domains to the supergraph platform and iterate on changes to their domains fearlessly.
+1. **Self-Serve API Consumer Composition**: Enables API integration, orchestration, and aggregation in a self-serve 
+   manner.
+2. **Federated Data Access Layer**: Provides a federated data layer that allows real-time access to data sources with
+   cross-domain composability (joins, filtering, etc.).
+3. **Incremental Adoption**: Offers a stable API that supports zero-downtime and incremental adoption.
 
-**This unlocks self-serve connectivity for domain owners.**
+## Supergraph Lifecycle
 
-### II. CONSUME APIs
+![ConnectConsumeDiscoverERD.png](assets/ConnectConsumeDiscoverERD.png)
 
-API consumers should be able to discover and consume APIs in a way that doesn't require manual API integration, aggregation or composition effort as far as possible. 
-API consumers have several common needs when they're dealing with fixed API endpoints or specific data queries:
-1. fetch different projections of data to prevent over-fetching
-2. join data from multiple places to prevent under-fetching
-3. filter, paginate, sort and aggregate data from multiple places
+### Connect Domains
+As an API producer, you should easily and seamlessly connect your data domains to the platform. The Supergraph strategy 
+and architecture addresses common challenges and reluctance from domain owners by ensuring:
 
-To provide an API experience that makes the consumption experience truly self-serve, there are two key requirements:
-1. **Composable API design**: The API presented by the supergraph engine must allow for on-demand composability. GraphQL is a great API to express composability semantics, but regardless of the API format used, a standardized, composable API design is a critical requirement.
-2. **API portal**: High-quality search, discovery and documentation of both the API and the underlying API models is critical to enable self-serve consumption. The more information that can be made available to API consumers the better. Eg: Data lineage, Authorization policies etc as appropriate.
+1. **Subgraph Connector CI/CD**: Keeps the API contract in sync with minimal overhead for the domain owner.
+2. **Subgraph Connector Performance**: Maintains or improves performance compared to direct access to the underlying 
+   domain.
 
-**This unlocks self-serve consumption for API consumers**
+### Consume APIs
+API consumers should be able to discover and consume APIs without manual integration, aggregation, or composition 
+efforts as far as possible. Key requirements include:
 
-### III. DISCOVER demand
+1. **Composable API Design**: Allows on-demand composability, often utilizing GraphQL for expressive API design.
+2. **API Portal**: Provides high-quality search, discovery, and documentation to facilitate self-serve consumption.
 
-Understanding how API consumers use their domain and identify their unmet needs is crucial for API producers. This insight allows API producers to enhance their domain. It also helps discover new domain owners to connect their domain into the supergraph.
+### Discover Demand
+Understanding how API consumers use domains and identifying their unmet needs is crucial for API producers. The 
+Supergraph platform supports:
 
-This necessitates 2 key capabilities of the supergraph platform to create a consumer-first, agile culture:
-1. API consumption, API schema &amp; portal analytics: A supergraph is analogous to a marketplace and needs to provide the marketplace owners and producers with insights to help improve the marketplace for the consumers.
-2. Ecosystem integrations: The supergraph platform should be able to integrate with existing communication and catalog tools, in particular to help understand _unmet_ demand of API consumers.
+1. **API Consumption Analytics**: Provides insights to improve the API marketplace for consumers.
+2. **Ecosystem Integrations**: Integrates with existing tools to understand unmet demand and enhance the ecosystem.
 
-**This closes the loop and allows the supergraph platform to create a virtuous cycle of success for producers and consumers**.
+### A Supergraph creates a virtuous cycle of success for API producers and consumers.
 
-## Supergraph reference architecture
+## Supergraph Architecture
 
-### CI/CD and build system (control plane)
-The control plane of the supergraph is critical to help domain owners [connect their domains](#i.-connect-domains) to the supergraph.
+### Control Plane (CI/CD and Build System)
 
-There are 3 components in the control plane of the supergraph
-1. The domain itself
-2. The subgraph
-3. The supergraph
+The control plane ensures seamless connection of data domains to the Supergraph.
 
-<img width="800" alt="Supergraph control plane components" src="https://github.com/hasura/supergraph-io/assets/131160/e661efd8-9d0f-4340-a5a1-a119e9fc87ee">
+There are three components in the control plane of the Supergraph:
 
-The control plane should define the following SDLC to help keep the supergraph in sync with the domain as the underlying domain changes.
+#### 1. The data domain itself
+A database, API or lambda function that provides the data.
+   
+#### 2. The subgraph
+API models, documentation, relationships, authorization policies. 
 
-<img width="800" alt="Supergraph CI/CD" src="https://github.com/hasura/supergraph-io/assets/131160/e6fec5a3-e3da-447e-9ac3-5dc0ceef66d9">
+#### 3. The Supergraph
+Centralized auth, governance, API conventions.
 
-### Distributed data plane
-The supergraph data plane is critical to enable high performance access to upstream domains so that API producers can maintain their domain without hidden future maintenance costs:
+### Control Plane Lifecycle
 
-<img  width="800" alt="Supergraph data plane" src="https://github.com/hasura/supergraph-io/assets/131160/c6e1de9b-fe8f-4f9e-8503-7f655b02d9a9">
+![control-plane-lifecycle.png](assets/control-plane-lifecycle.png)
 
-### Supergraph API schema
+### Distributed Data Plane
+The data plane ensures high-performance access to upstream domains, maintaining domain performance without hidden 
+future maintenance costs.
 
-**Standardization**
+## API Schema Design Guide
 
-A supergraph API schema should create standardized conventions on the following:
-- Queryable models vs Commands
-  - Models are collections of data that can be queried in standardized ways
-  - Commands are methods that map to particular pieces of business logic that might return references to other commands or models
-- Standardized conventions on queryable model: While each model might only expose some ways of querying it, the syntax and conventions for standard query operations should be standardized
-  - Joins
-  - Filtering
-  - Pagination
-  - Sorting
-  - Aggregations
+### Standardization
+A Supergraph API schema should standardize:
 
-**Composability**
+1. **Models & Commands**: Separating resources (data collections) and methods (business logic).
+2. **Filtering, Sorting, Pagination, Aggregation**: Providing consistent capabilities across models.
 
-The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
+### Composability
+The Supergraph API offers varying degrees of composability, including:
 
-| Composability Attribute | Capability | Description |
-| :-- | :-- | :-- | 
-| C1 | Joining data | Join related data together in a "foreign key" like join |
-| C2 | Nested filtering | Filter a parent by a property of its child (aka a property of a related entity) |
-| C3 | Nested sorting | Sort a parent by a property of its child (aka a property of a related entity) |
-| C4 | Nested pagination | Fetch a paginated list of parents, along with a paginated &amp; sorted list of children for each parent |
-| C5 | Nested aggregation | Aggregate a child in the context of its parent |
+1. **Joining Data**: Combining related data.
+2. **Nested Filtering, Sorting, Pagination, Aggregation**: Advanced queries involving related entities.
 
-These composability attributes are what increase the level of self-serve composition and reduce the need for manual API aggregation and composition.
+## Use Cases and Scenarios
+Explore common scenarios and detailed use cases to understand the practical applications of the Supergraph architecture.
 
-## More reading
+## Summary
+The Supergraph architecture transforms API production and consumption by providing a unified, self-serve platform that 
+simplifies data access and integration, enabling API producers and consumers to thrive in a connected ecosystem.
 
-- [Use cases](/use-cases)
+## More Reading
+- [Use Cases](/use-cases)
+- [Reference API Schema](/reference-api-schema)
 - [FAQ](/faq)
