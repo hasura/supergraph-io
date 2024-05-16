@@ -11,8 +11,8 @@ self-serve endpoint for API consumers.
 | Term               | Definition                                                                                                                     |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | **Supergraph**     | A Supergraph is an API creation methodology that offers reference specifications, design principles and an operating model.    |
-| **supergraph API** | A modular, interconnected resource of data and logic as a single, powerful, self-serve API endpoint.                           |
-| **Engine**         | Often referred to as a gateway or router in a GraphQL federation stack, managing API requests and responses.                   |
+| **Supergraph API** | A modular, interconnected resource of data and logic as a single, powerful, self-serve API endpoint.                           |
+| **Engine**         | Often referred to as a gateway or router to manage API requests and responses.                                                 |
 | **Data Domain**    | A distinct area of functionality or data.                                                                                      |
 | **Subgraph**       | A modular component that acts as a self-contained entity within a larger supergraph and often represents a single data domain. |
 | **API Consumer**   | An entity that uses APIs to access data and functionality.                                                                     |
@@ -45,9 +45,8 @@ A Supergraph provides the following key benefits:
 As an API producer, you should easily and seamlessly connect your data domains to the platform. The Supergraph strategy 
 and architecture addresses common challenges and reluctance from domain owners by ensuring:
 
-1. **Subgraph Connector CI/CD**: Keeps the API contract in sync with minimal overhead for the domain owner.
-2. **Subgraph Connector Performance**: Maintains or improves performance compared to direct access to the underlying 
-   domain.
+1. **Subgraph CI/CD**: Keeps the API contract in sync with minimal overhead for the domain owner.
+2. **Subgraph Performance**: Maintains or improves performance compared to direct access to the underlying data domain.
 
 ### Consume APIs
 API consumers should be able to discover and consume APIs without manual integration, aggregation, or composition 
