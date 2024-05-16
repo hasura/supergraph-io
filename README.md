@@ -90,28 +90,278 @@ Centralized auth, governance, API conventions.
 The data plane ensures high-performance access to upstream domains, maintaining domain performance without hidden 
 future maintenance costs.
 
+![data-plane-flow.png](assets/data-plane-flow.png)
+
 ## API Schema Design Guide
 
-### Standardization
-A Supergraph API schema should standardize:
+<!-- this section needs a reference architecture -->
 
-1. **Models & Commands**: Separating resources (data collections) and methods (business logic).
-2. **Filtering, Sorting, Pagination, Aggregation**: Providing consistent capabilities across models.
+### Standardization
+
+In relation to **data resources (models)** and **data logic (commands)**, a supergraph API schema should create standardized 
+conventions on the following:
+
+<table>
+  <thead>
+    <tr>
+      <td class="fixed-col-width-1"><b>Standardization Attribute</b></td>
+      <td><b>Capability</b></td>
+    </tr>
+  </thead>
+<tbody>
+  <tr>
+  <td><b>S1</b></td>
+  <td>
+  Separating models and commands
+    <details> 
+      <summary>Example</summary>
+
+  <ul>
+    <li>Models are collections of data that can be queried in standardized source-agnostic ways</li>
+    <li>Commands are methods that map to particular pieces of business logic that might return references to other commands or models</li>
+  </ul>
+
+```graphql
+  # A standardized way to fetch a list of authors
+  query GetAuthors {
+    authors {
+      id
+      name
+    }
+  }
+
+  # A specific method to search for authors
+  query findAuthors {
+    search_authors(args: {search: "Einstein"}) {
+      id
+      name
+    }
+  }
+```
+ </details>
+  </td>
+  </tr>
+
+  <tr>
+  <td><b>S2</b></td>
+  <td>
+    Model filtering
+    <br/>
+    <details>
+      <summary>Example</summary>
+      Get a list of articles published this year
+
+```graphql
+ query articlesThisYear {
+    articles(where: {publishDate: {_gt: "2024-01-01"}}) {
+      id
+      name
+    }
+  }
+```
+  </details>
+  </td>
+  </tr>
+  <tr>
+  <td><b>S3</b></td>
+  <td> 
+    Model sorting
+  <details>
+    <summary>Example</summary>
+  Get a list of articles sorted in reverse by the date of publishing
+
+  ```graphql
+  query sortedArticles {
+    article(order_by: {publishDate: desc}) {
+      id
+      title
+      author_id
+    }
+  }
+  ```
+  </details>
+  </td>
+  </tr>
+  <tr>
+  <td><b>S4</b></td>
+  <td> 
+    Model pagination
+    <details>
+      <summary>Example</summary>
+  Paginate the above list with 20 objects per page and fetch the 3rd page
+
+  ```graphql
+  query sortedArticlesThirdPage {
+    article(order_by: {publishDate: desc}, offset: 40, limit: 20) {
+      id
+      title
+      author_id
+    }
+  }
+  ```
+  </details>
+  </td>
+  </tr>
+
+  <tr>
+  <td><b>S5</b></td>
+  <td> 
+    Model aggregations over fields
+    <details>
+      <summary>Example</summary>
+  Get a count of authors and their average age
+
+  ```graphql
+  query authorStatistics {
+    author_aggregate {
+      aggregate {
+        count # basic aggregation support by any model
+        avg { # supported over any numeric fields of a type
+          age
+        }
+        
+      }
+    }
+  }
+  ```
+  </details>
+  </td>
+  </tr>
+</tbody>
+</table>
+
+
+> [!NOTE]  
+> ### Prior art
+> - [Google Cloud API design guide](https://cloud.google.com/apis/design/resources)
+> - Resource: A resource-oriented API is generally modeled as a resource hierarchy, where each node is either a simple resource or a collection resource
+> - Method: Resources are manipulated via a small set of methods
+
 
 ### Composability
-The Supergraph API offers varying degrees of composability, including:
 
-1. **Joining Data**: Combining related data.
-2. **Nested Filtering, Sorting, Pagination, Aggregation**: Advanced queries involving related entities.
+The supergraph API is typically a GraphQL / JSON API. There are varying degrees of composability an API can offer, as listed out in the following table:
 
-## Use Cases and Scenarios
-Explore common scenarios and detailed use cases to understand the practical applications of the Supergraph architecture.
+<table>
+<thead>
+<tr>
+<td class="fixed-col-width-1"><b>Composability Attribute</b></td>
+<td class="fixed-col-width-2"><b>Capability</b></td> <td><b>Description</b></td>
+</tr>
+</thead>
+<tr>
+<tbody>
+<td><b>C1</b></td>
+<td> Joining data</td>
+<td>Join related data together in a "foreign key" like join
+  <details>
+    <summary>Example</summary>
+Get a list of authors and <b>their</b> articles
 
-## Summary
-The Supergraph architecture transforms API production and consumption by providing a unified, self-serve platform that 
-simplifies data access and integration, enabling API producers and consumers to thrive in a connected ecosystem.
+```graphql
+query authorWithArticles {
+  author {
+    id
+    name
+    articles {
+      id
+      title
+    }
+  }
+}
+```
+</details>
+</td>
+</tr>
 
-## More Reading
-- [Use Cases](/use-cases)
-- [Reference API Schema](/reference-api-schema)
+<tr>
+<td><b>C2</b></td>
+<td> Nested filtering</td>
+<td>Filter a parent by a property of its child (i.e. a property of a related entity)
+    <details>
+    <summary>Example</summary>
+Get a list of authors whose have published an article this year
+
+```graphql
+query recentlyActiveAuthors {
+  author(where: {articles: {publishDate: {_gt: "2024-01-01"}}}) {
+    id
+    name
+  }
+}
+```
+</details>
+</td>
+</tr>
+<tr>
+<td><b>C3</b></td>
+<td> Nested sorting </td>
+<td>Sort a parent by a property of its child (i.e. a property of a related entity)
+    <details>
+    <summary>Example</summary>
+Get a list of articles sorted by the names of their author
+
+```graphql
+query sortedArticles {
+  article(order_by: {author: {name: asc}}) {
+    id
+    title
+  }
+}
+```
+</details>
+</td>
+</tr>
+<tr>
+<td><b>C4</b></td><td> Nested pagination </td>
+<td>Fetch a paginated list of parents, along with a paginated &amp; sorted list of children for each parent
+    <details>
+    <summary>Example</summary>
+Get the 2nd page of a list of authors and the first page of <b>their</b> articles, sorted by the article's title field
+
+```graphql
+query paginatedAuthorsWithSortedPaginatedArticles {
+  author(offset: 10, limit: 20) {
+    id
+    name
+    articles(offset: 0, limit: 25, order_by: {title: asc}) {
+      title
+      publishDate
+    }
+  }
+}
+```
+</details>
+</td>
+</tr>
+<tr>
+<td><b>C5</b></td><td> Nested aggregation </td>
+<td>Aggregate a child/parent in the context of its parent/child
+    <details>
+    <summary>Example</summary>
+Get a list of authors and the number of articles written by each author
+
+```graphql
+query prolificAuthors {
+  author (limit: 10) {
+    id
+    name
+    articles_aggregate {
+      count
+    }
+  }
+}
+```
+</details>
+</td>
+</tr>
+</tbody>
+</table>
+
+These composability attributes are what increase the level of self-serve composition and reduce the need for manual API aggregation and composition.
+
+## More reading
+
+- [Use cases](/use-cases)
+- [Reference API schema](/reference-api-schema)
 - [FAQ](/faq)
