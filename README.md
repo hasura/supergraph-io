@@ -2,10 +2,7 @@
 
 ## Introduction
 
-In data API design, a Supergraph is an API development methodology that offers reference specifications, design 
-principles and an operating model. By implementing a Supergraph methodology, multiple teams in an organization can 
-easily collaborate to deliver a modular, interconnected resource of data and logic to create a single, powerful, 
-self-serve endpoint for API consumers.
+A Supergraph is a method for designing data APIs. It provides guidelines and best practices for developing APIs. By using the Supergraph approach, different teams in an organization can work together to create a unified, modular system of data and logic. This results in a single, powerful endpoint that API consumers can easily use.
 
 ## Table of Definitions
 | Term               | Definition                                                                                                                     |
