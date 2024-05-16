@@ -2,10 +2,7 @@
 
 ## Introduction
 
-In data API design, a Supergraph is an API development methodology that offers reference specifications, design 
-principles and an operating model. By implementing a Supergraph methodology, multiple teams in an organization can 
-easily collaborate to deliver a modular, interconnected resource of data and logic to create a single, powerful, 
-self-serve endpoint for API consumers.
+A Supergraph is a method for designing data APIs. It provides guidelines and best practices for developing APIs. By using the Supergraph approach, different teams in an organization can work together to create a unified, modular system of data and logic. This results in a single, powerful endpoint that API consumers can easily use.
 
 ## Table of Definitions
 | Term               | Definition                                                                                                                     |
@@ -13,7 +10,7 @@ self-serve endpoint for API consumers.
 | **Supergraph**     | A Supergraph is an API creation methodology that offers reference specifications, design principles and an operating model.    |
 | **supergraph API** | A modular, interconnected resource of data and logic as a single, powerful, self-serve API endpoint.                           |
 | **Engine**         | Often referred to as a gateway or router in a GraphQL federation stack, managing API requests and responses.                   |
-| **Data Domain**    | A distinct area of functionality or data.                                                                                      |
+| **Data Domain**    | A distinct area of functionality or data, such as Customer Management, Inventory Management, or Payment Processing                                                                                      |
 | **Subgraph**       | A modular component that acts as a self-contained entity within a larger supergraph and often represents a single data domain. |
 | **API Consumer**   | An entity that uses APIs to access data and functionality.                                                                     |
 | **API Producer**   | An entity that creates and maintains APIs.                                                                                     |
