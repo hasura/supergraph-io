@@ -42,8 +42,8 @@ A Supergraph provides the following key benefits:
 
 ![ConnectConsumeDiscoverERD.png](assets/ConnectConsumeDiscoverERD.png)
 
-### Connect Domains
-As an API producer, you should easily and seamlessly connect your data domains to the platform. The Supergraph strategy 
+### Connect Data Domains
+As an API producer, you should easily be able to connect your data domains to the platform. The Supergraph strategy 
 and architecture addresses common challenges and reluctance from domain owners by ensuring:
 
 1. **Subgraph CI/CD**: Keeps the API contract in sync with minimal overhead for the domain owner.
