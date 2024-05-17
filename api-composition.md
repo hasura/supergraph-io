@@ -29,6 +29,7 @@ Given that domains and domain APIs exist, API integration remains challenging fo
 2. The API does not have a typed schema and/or does not provide an SDK experience for the consumer.
 3. The API's documentation is missing or out of date.
 4. The API does not have standardized conventions or follow a consistent design.
+5. API versioning creates tension with high-velocity development 
 
 A supergraph provides a systematic way to address these challenges because it provides a common semantic layer and registry for the underlying domains and their APIs. A well-setup supergraph platform provides out-of-the-box solutions for the challenges mentioned above.
 
