@@ -109,19 +109,28 @@ A supergraph platform should provide a clear operating model and technology best
 
 Building a federated GraphQL API with a supergraph is a strategic decision. When the key desired benefit of GraphQL is to solve an API composition problem on top of existing domains, then the key expected ROI is to improve API integration, aggregation, and orchestration. In this case, the following anti-patterns should be avoided. Building a federated GraphQL API with a supergraph is a strategic decision, and the wrong choice can create thousands of person-hours of technical debt and legacy that become hard to unwind.
 
-1. ❌ **Pure schema-driven design**:
-    - The situation: A schema driven in GraphQL is the approach of first building a schema that is entirely based on what consumers need.
-    - The problem: While this approach is important for the parts of the API that require API aggregation and custom API orchestration workflows, this approach negates the effort that has gone into and the effort that will continue to go into maintaining domain APIs.
-    - Symptoms: API producers are not willing to own their subgraphs and find it tedious to maintain another subgraph API. Additional subgraph teams and developers are required to maintain domain subgraphs.
-    - The solution: Generating parts of the supergraph from the domain, and building parts of the supergraph based on consumer needs is the ideal approach.
+1. ❌ **Pure schema-driven implementation**:
+    - The situation: The entire GraphQL schema is hand-written to, purportedly meet the goal of a "consumer first" API design.
+    - The problem: Domains and domain APIs are already designed keeping the needs of one or more consumers in mind. Recreating these parts of API in the GraphQL schema is essentially complete duplication of effort and results in the creation of a parallel standard. A consumer driven approach is only important for the parts of the API that require API aggregation and custom API orchestration workflows.
+    - Symptoms:
+      - A parallel API standards group starts to exist.
+      - Existing domain owners are not willing to own their subgraph GraphQL servers and find it tedious.
+      - A new squad or team is spending their entire development time building and maintaining a GraphQL wrapper.
+    - The solution:
+      - Domain-driven subgraphs: Auto-generate subgraphs that accurately reflect the domain. Subgraph improvements are driven by domain design improvements.
+      - Consumer-driven additions to the supergraph: Create a tech stack and an operating model for making high-velocity additions to the supergraph based on the needs of a specific consumer.
 2. ❌ **Forcing subgraph owners to own inter-subgraph relationships**:
     - The situation: Relationships between subgraphs can only be specified by subgraph owners.
     - The problem: While this approach allows subgraph owners to extend and connect their subgraphs to other subgraphs, it requires domain owners (subgraph owners) to understand other subgraphs.
-    - Symptoms: Disconnected supergraphs. Inefficient query execution plans if relationships are hard to implement in some directions. API consumers who are frustrated at not being able to participate in creating inter-subgraph relationships.
+    - Symptoms:
+      - Disconnected supergraphs. Inefficient query execution plans if relationships are hard to implement in some directions. 
+      - API consumers who are frustrated at not being able to participate in creating inter-subgraph relationships.
     - The solution: In addition to allowing subgraph owners to create inter-subgraph relationships, allow the creation of relationships in the supergraph engine outside the subgraphs as well.
 3. ❌ **Requiring an additional API registry to create custom resolvers (eg: federated mutations)**:
     - The situation: Mutations can only originate from a domain subgraph.
     - The problem: Supergraph stakeholders are forced to create a new subgraph that directly connects to underlying domains. This requires stakeholders to refer to another API registry to understand how to connect to the underlying subgraph domains (eg: database, REST).
-    - Symptoms: API consumers are frustrated at not being able to easily create custom resolvers that represent some unique business logic and workflow for their specific need. Lack of an operating model around federating mutations, or API sagas, or distributed transactions.
+    - Symptoms: 
+      - API consumers are frustrated at not being able to easily create custom resolvers that represent some unique business logic and workflow for their specific need. 
+      - Lack of an operating model around federating mutations, or API sagas, or distributed transactions.
     - The solution: The supergraph platform should provide a way for supergraph stakeholders to author custom API workflows interspersed with business logic without having to refer to APIs outside of the supergraph.
 
