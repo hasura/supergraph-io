@@ -6,7 +6,6 @@ Rendered at: [supergraph.io](https://supergraph.io)
 
 This site uses Hugo with the Hugo Book Theme.
 
-
 #### Local development
 
 ```bash
