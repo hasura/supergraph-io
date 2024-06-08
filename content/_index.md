@@ -340,9 +340,3 @@ query prolificAuthors {
 </table>
 
 These composability attributes are what increase the level of self-serve composition and reduce the need for manual API aggregation and composition.
-
-## More reading
-
-- [Use cases](/use-cases)
-- [Reference API schema](/reference-api-schema)
-- [FAQ](/faq)
