@@ -1,5 +1,6 @@
-# Supergraph.io website
+# supergraph.io website
 
+[!supergraph logo](static/supergraph-logo.png)
 Rendered at: [supergraph.io](https://supergraph.io)
 
 ## Contributing
