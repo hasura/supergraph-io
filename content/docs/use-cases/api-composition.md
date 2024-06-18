@@ -4,6 +4,7 @@ We use the term API composition to encompass three main aspects of working with 
 
 A key driver for the Supergraph is the need for API composition. GraphQL (monolithic or federated) is a special case of this need.
 
+## What is API composition & why is it hard?
 While domain owners (producers) are owners of a domain API, in a multi-consumer and multi-producer scenario, API consumers often also need specialized APIs that are optimized for their use cases.
 
 ![Screen Shot 2024-05-13 at 10 22 07 PM](https://github.com/hasura/supergraph-io/assets/131160/53f3de0c-1f35-4032-a63d-9c2602566073)
@@ -22,7 +23,7 @@ A supergraph platform solves the following three API composition problems:
 2. Aggregation
 3. Orchestration
 
-## Integration
+## Solving API Integration
 
 Given that domains and domain APIs exist, API integration remains challenging for API consumers for the following reasons:
 1. The API output format or protocol is not ideal or optimal for a consumer.
@@ -33,7 +34,7 @@ Given that domains and domain APIs exist, API integration remains challenging fo
 
 A supergraph provides a systematic way to address these challenges because it provides a common semantic layer and registry for the underlying domains and their APIs. A well-setup supergraph platform provides out-of-the-box solutions for the challenges mentioned above.
 
-## Aggregation (or batching)
+## Solving API Aggregation (or batching)
 
 API consumers often need to fetch data from multiple API endpoints. API aggregation or batching, performed closer to the domains, can prevent excessive data transfer and reduce network round trips.
 
@@ -47,7 +48,7 @@ A well-setup supergraph platform provides a high level of composability that mak
 1. Joins: Fetch data from A and related data from B.
 2. Nested filters: Fetch data from A, filtered by a property value of its related data B.
 
-## Orchestration
+## Solving API Orchestration
 
 API consumers often need to create reliable workflows that require sequencing multiple API calls interspersed with business logic. Even if the underlying domain APIs exist, API orchestration is challenging because it is the part of the API that is consumer-defined and potentially spans multiple domains.
 
@@ -59,7 +60,7 @@ A supergraph platform should provide a clear operating model and technology best
 simple aggregation/batching use-cases.
 
 
-## API composition checklist
+## Supergraph checklist for API composition
 
 <table>
   <!--thead>
